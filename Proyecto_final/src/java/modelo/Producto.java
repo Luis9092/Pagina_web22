@@ -143,7 +143,7 @@ public class Producto {
     } 
     
     
-   public int modificar(int id)
+     public int modificar(int id)
     {
         int devolver=0;
         try
@@ -156,7 +156,7 @@ public class Producto {
             parametro=(PreparedStatement) cn.conexiondb.prepareStatement(codigo_sql);
             parametro.setString(1, getProducto());
             parametro.setString(2, getDescripcion());
-            parametro.setString(3, getImagen());
+            parametro.setString(3, "Imagenes/"+getImagen());
             //parametro.setString(4, getFecha_ingreso());
             parametro.setString(4, fecha);
             parametro.setInt(5,    getIdmarca());
@@ -173,7 +173,7 @@ public class Producto {
         }
         
         return devolver;
-    } 
+    }  
     
    
    public int agregar()
@@ -189,7 +189,7 @@ public class Producto {
             parametro=(PreparedStatement) cn.conexiondb.prepareStatement(codigo_sql);
             parametro.setString(1, getProducto());
             parametro.setString(2, getDescripcion());
-            parametro.setString(3, getImagen());
+            parametro.setString(3, "Image/"+getImagen());
             //parametro.setString(4, getFecha_ingreso());
             parametro.setString(4, fecha);
             parametro.setInt(5,    getIdmarca());
@@ -205,8 +205,7 @@ public class Producto {
         }
         
         return devolver;
-    }
-    
+    }  
     public DefaultTableModel leer()
     {
         DefaultTableModel tabla = new DefaultTableModel();
@@ -239,6 +238,33 @@ public class Producto {
             System.out.println("Error:"+ex.getMessage());
         }
         return tabla;
+    }
+    
+       public String obtener_imagen()
+    {
+        String imagen="";
+        int id=22;
+        try
+        {
+            cn=new Conexion();
+            String consulta="select imagen from productos where idproducto=?;";
+            cn.abrirCon();
+            PreparedStatement parametro= (PreparedStatement) cn.conexiondb.prepareStatement(consulta);
+            parametro.setInt(1, id);
+            
+            ResultSet peticion=parametro.executeQuery();
+            while(peticion.next())
+            {
+                imagen="Image/"+peticion.getString(1);
+            }
+            cn.cerrarCon();
+        }catch(SQLException ex)
+        {
+            
+        }
+        
+        
+        return imagen;
     }
     
 }

@@ -25,7 +25,7 @@
                 <br>
                 <div class="texto">
                 <i class="fas fa-user-edit"></i>
-                <%-- <label>Codigo: </label>--%><input type="number" class="txt" id="txtCurp" required="" onkeyup="generarUsuario()" name="txtCurp" placeholder="Codigo" pattern="[J]{1}[0-9]{3}">
+                <%-- <label>Codigo: </label>--%><input type="number" class="txt" id="txtCurp" onkeypress="return event.charCode >= 48" min="1" required="" onkeyup="generarUsuario()" name="txtCurp" placeholder="Codigo" pattern="[J]{1}[0-9]{3}">
                 </div>
                 <br>
                 <br>
@@ -56,10 +56,12 @@
                 <br>
                 <label>Usuario Generado: </label><input type="text" class="txt" id="txtUsuarioGeneradoAutomaticamente" required="" readonly="" name="txtUsuarioGeneradoAutomaticamente" placeholder="Usuario Generado">
                 <br>
-                <br>
+                <br> <br>
+                <div class="Boton_44">
                 <input type="submit" value="Enviar Datos" class="btn" id="btnEnviarDatos" disabled="">
                 <input type="button" value="Borrar datos" class="btn" id="btnBorrardatos" onclick="borrarDatosValidarUsuario()">
-            </form>
+            </div>
+                </form>
             <script src="js/funcionesValidarUsuario.js"></script>
         </div>
     </body>

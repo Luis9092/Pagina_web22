@@ -60,7 +60,7 @@ public class Metodos_Login {
                 usuarioRepetido = true; //ya existe
             }else{
                 usuarioRepetido =  false; //no existe
-            }
+        }
             conexion.close();
         } catch (SQLException ex) {
             System.out.println("Error..."+ex.getMessage());

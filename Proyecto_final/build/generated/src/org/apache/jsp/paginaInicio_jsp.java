@@ -53,7 +53,7 @@ public final class paginaInicio_jsp extends org.apache.jasper.runtime.HttpJspBas
 
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         if(session.getAttribute("txtUsuario")==null&&session.getAttribute("nombre")==null){
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("index.html");
         }
         
       out.write("\n");
@@ -61,11 +61,16 @@ public final class paginaInicio_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("    </head>\n");
       out.write("    <body ");
       out.write(">\n");
-      out.write("        <h1>Hola ");
-      out.print(request.getSession().getAttribute("nombre"));
-      out.write(", bienvenido de nuevo </h1>\n");
       out.write("        ");
       out.write("\n");
+      out.write("      ");
+
+
+    response.sendRedirect("index_inicio_principal.jsp");
+
+      out.write("  \n");
+      out.write("        \n");
+      out.write("      \n");
       out.write("        <form action=\"sr_cerrar_sesion\">\n");
       out.write("            <input type=\"submit\" value=\"Cerrar Sesion\">\n");
       out.write("        </form>\n");

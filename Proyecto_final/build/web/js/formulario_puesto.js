@@ -1,7 +1,14 @@
 /* global Swal, alertify, response */
 
+
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
+
+//var test = 'Bienvenido';
+//$("#txt_puesto").val('Hola');
+var uno='que honda';
+document.getElementsByName("#txt_puesto").values(uno);
+
 function Limpiar() {
     $("#txt_id").val(0);
     $("#txt_puesto").val('');
@@ -201,155 +208,3 @@ function cuatro(evt) {
     evt.preventDefault();
 }
 
-
-//});
-/*
- function tres() {
- event.preventDefault();
- alertify.confirm("Desea Eliminar?", function (e) {
- if (!e) {
- return false;
- }
- });
- }
- /*
- $("#btn_eliminar").on('submit', 'form', function(e){
- alertify.confirm('Confirm Title', 'Confirm Message',
- function(){
- //submit
- document.formulario.submit();
- alertify.success('Ok');
- },
- function(){ 
- alertify.error('Cancel');
- 
- });
- });
- */
-/*
- function ver_eliminar() {
- event.preventDefault();
- var r = false;
- Swal.fire({
- title: 'Eliminar',
- text: "Desea Elifminar el registro?",
- icon: 'warning',
- showCancelButton: true,
- confirmButtonColor: '#3085d6',
- cancelButtonColor: '#d33',
- confirmButtonText: 'si, eliminar',
- cancelButtonText: 'Cancelar'
- }).then((result) => {
- if (result.value) {
- $("#formulario").submit();
- Swal.fire(
- 'Eliminado',
- 'Datos Eliminados Correctamente',
- 'success'
- 
- );
- } else {
- //     alert('FALSO');
- return false;
- }
- }
- );
- 
- // return r;
- //   return false;
- // return r;  alert(r);
- }
- * 
- 
- 
- $('#btn_eliminar').on('click', function() {
- event.preventDefault();
- let uno= document.getElementById("txt_id");
- var postID =uno;
- console.log(postID);
- 
- 
- Swal.fire({
- title: "Are you sure?",
- text: "If you delete this post all associated comments also deleted permanently.",
- type: "warning",
- showCancelButton: true,
- closeOnConfirm: false,
- showLoaderOnConfirm: true,
- confirmButtonClass: "btn-danger",
- confirmButtonText: "Yes, delete it!"
- }, function() {
- setTimeout(function() {
- $.post("src_puesto.java", {
- id: postID
- },
- function(data, status) {
- Swal.fire({
- title: "Deleted!",
- text: "Your post has been deleted.",
- type: "success"
- },
- function() {
- location.reload();
- }
- );
- }
- );
- 
- }, 50);
- });
- });
- * */
-/*
- function ver49() {
- Swal.fire({
- title: "Add Note",
- input: "textarea",
- showCancelButton: true,
- confirmButtonColor: "#1FAB45",
- confirmButtonText: "Save",
- cancelButtonText: "Cancel",
- buttonsStyling: true
- }).then(function () {
- return true;
- Swal.fire(
- "success!",
- "Your note has been saved!",
- "success"
- );
- }, function (dismiss) {
- if (dismiss === "cancel") {
- Swal.fire(
- "cancelled",
- "Canceled Note",
- "error"
- );
- return false;
- }
- ;
- });
- }
- * 
- */
-/*
- function tres() {
- var confirm = alertify.confirm('Probando confirm', 'Confirmar solicitud?', null, null).set('labels', {ok: 'Confirmar', cancel: 'Cancelar'});
- var mensaje = false;
- confirm.set({transition: 'slide'});
- // Verificar la entrada falsa o positiva
- confirm.set('onok', function () { //callbak al pulsar botón positivo
- alertify.success('Has confirmado');
- 
- window.location.href ="src_puesto.java";
- //  response.sendRedirect("src_puesto.java");
- });
- 
- confirm.set('oncancel', function () { //callbak al pulsar botón negativo
- alertify.error('Has Cancelado el dialog');
- return false;
- 
- });
- 
- return false;
- }
- * */

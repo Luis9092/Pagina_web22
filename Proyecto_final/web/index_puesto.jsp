@@ -19,20 +19,61 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="css/estilo_puesto.css">
+        <link href="css/estilo_menu.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <form  action="index.html">
-            <input class="btn_form" type="submit" value="Menu" />
-            <button type="button" class=" btn_form" data-toggle="modal" data-target="#modal_puesto" onclick="Limpiar()">
-                Puestos
-            </button>
-    </form>
+        <div id="header">
+            <ul class="nav">
+                <img src="imagenes/onitech.png" alt=""/>
+                <li><a href="index_inicio_principal.jsp">Inicio</a></li>
+                <li><a href="index_producto.jsp">Productos</a>
+                    <ul>
+                        <li><a href="index_marcas.jsp">Marcas</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Ventas</a>
+                    <ul>
+                        <li><a href="index_cliente.jsp">Clientes</a></li>
+                        <li><a href="index_empleado.jsp">Empleados</a>
+                            <ul>
+                                <li><a href="index_puesto.jsp">Puestos</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="">Compras</a>
+                    <ul>
+                        <li><a href="index_prooveedores.jsp">Proveedores</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Reportes</a></li>
+                <li >
+                    <%
+       response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+       if(session.getAttribute("txtUsuario")==null&&session.getAttribute("nombre")==null){
+           response.sendRedirect("index.html");
+       }
+                    %>
+                    <a > 
+                        <form action="sr_cerrar_sesion" >
+                            <input class="cerrar_sesion" type="submit"  value="Cerrar Sesion">
+                        </form>
+                    </a>
 
-        <div class="container p-3 my-3 bg-light  text-black">
-            <div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" id="modal_puesto" role="dialog">
+                </li>
+            </ul>
+        </div>
+        <br>
+        <button type="button" class=" btn_form" data-toggle="modal" data-target="#modal_puesto" onclick="Limpiar()">
+            Puestos
+        </button>
+
+
+        <div class="container p-3 my-3  text-black">
+            <div class="modal fade " data-backdrop="static" data-keyboard="false" tabindex="-1" id="modal_puesto" role="dialog">
                 <div class="modal-dialog modal-xl ">
-                    <div class="modal-content ">
-                        <div class="modal-body formula_modal">
+                    <div class="modal-content formula_modal">
+                        <div class="modal-body ">
                             <form  action="index_empleado.jsp">
                                 <input class="enlaze_empleado" type="submit" value="Empleados" />
                             </form>
@@ -48,12 +89,12 @@
                                 </div>
 
                                 <div class="formulario__grupo" id="grupo__txt_puesto">
-                                    <label for="lbl_puesto" class="formulario__label">Nombres: </label>
+                                    <label for="lbl_puesto" class="formulario__label">Puesto: </label>
                                     <div class="formulario__grupo-input">
-                                        <input type="text" class="formulario__input" name="txt_puesto" id="txt_puesto" placeholder="puesto" pattern="[A-Z]{1}[a-zA-ZÀ-ÿ\s]{3,40}"   required>
+                                        <input type="text" class="formulario__input" name="txt_puesto" id="txt_puesto" value="" placeholder="puesto" pattern="[A-Z]{1}[a-zA-ZÀ-ÿ\s]{3,40}"   required>
                                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                     </div>
-                                    <p class="formulario__input-error">Solo esta permitido letras </p>
+                                    <p class="formulario__input-error">Solo estan permitido letras.</p>
                                 </div>
                                 <br>
                                 <center>    
@@ -61,7 +102,7 @@
                                     <button  name="btn_modificar" id="btn_modificar" value="modificar" class="formulario__btn1" >Modificar</button>
                                     <button  name="btn_2" id="btn_2" onclick="return confirmar2();" value="eliminar"class="formulario__btn2" > Eliminar </button>
                                 </center>
-                                 <button name="btn_eliminar" id="btn_eliminar"  value="eliminar"class="btn_falso"></button>
+                                <button name="btn_eliminar" id="btn_eliminar"  value="eliminar"class="btn_falso"> </button>
                             </form>
 
                             <div class="modal-footer">

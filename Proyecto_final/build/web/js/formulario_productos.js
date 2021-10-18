@@ -1,38 +1,37 @@
- /* global Swal */
+/* global Swal */
 
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
- 
- $("#tbl_productos").on("click", "tr td", function (evt)
-            {
-                var target, id, id_producto, producto, descripcion, imagen, precio_costo, precio_venta, existencia, fecha_ingreso, marca;
-                target = $(evt.target);
-                id = target.parent().data("id");
-                id_producto = target.parent().data("id_producto");
-                producto = target.parent("tr").find("td").eq(0).html();
-                descripcion = target.parent("tr").find("td").eq(1).html();
-                imagen = target.parent("tr").find("td").eq(2).html();
-                precio_costo = target.parent("tr").find("td").eq(3).html();
-                precio_venta = target.parent("tr").find("td").eq(4).html();
-                existencia = target.parent("tr").find("td").eq(5).html();
-                fecha_ingreso = target.parent("tr").find("td").eq(6).html();
-                //marca=target.parent("tr").find("td").eq(7).html();
-                $("#txt_id_producto").val(id);
-                $("#txt_producto").val(producto);
-                $("#txt_descripcion").val(descripcion);
-                $("#txt_imagen").val(imagen);
-                $("#txt_costo").val(precio_costo);
-                $("#txt_venta").val(precio_venta);
-                $("#txt_existencia").val(existencia);
-                $("#txt_fecha_ingreso").val(fecha_ingreso);
-                $("#drop_marcas").val(id_producto);
-               $("#modal_producto").modal('show');
-            });
+
+$("#tbl_productos").on("click", "tr td", function (evt)
+{
+    var target, id, id_producto, producto, descripcion, imagen, precio_costo, precio_venta, existencia, fecha_ingreso, marca;
+    target = $(evt.target);
+    id = target.parent().data("id");
+    id_producto = target.parent().data("id_producto");
+    producto = target.parent("tr").find("td").eq(0).html();
+    descripcion = target.parent("tr").find("td").eq(1).html();
+    // imagen = target.parent("tr").find("td").eq(2).html();
+    precio_costo = target.parent("tr").find("td").eq(3).html();
+    precio_venta = target.parent("tr").find("td").eq(4).html();
+    existencia = target.parent("tr").find("td").eq(5).html();
+    fecha_ingreso = target.parent("tr").find("td").eq(6).html();
+    //marca=target.parent("tr").find("td").eq(7).html();
+    $("#txt_id_producto").val(id);
+    $("#txt_producto").val(producto);
+    $("#txt_descripcion").val(descripcion);
+    //      $("#txt_imagen").val(imagen);
+    $("#txt_costo").val(precio_costo);
+    $("#txt_venta").val(precio_venta);
+    $("#txt_existencia").val(existencia);
+    $("#txt_fecha_ingreso").val(fecha_ingreso);
+    $("#drop_marcas").val(id_producto);
+    $("#modal_producto").modal('show');
+});
 
 const expresiones = {
-
-    nombre: /^[A-Z]{1}[a-zA-ZÀ-ÿ\s]{3,40}$/ // Letras y espacios, pueden llevar acentos.
-
+//nombre: /^[A-Za-z0-9\s]+$/ // Letras y espacios, pueden llevar acentos.
+nombre: /^[a-zA-Z0-9,.!? ]*$/ 
 };
 const campos = {
     nombre: false
@@ -42,7 +41,7 @@ const validarFormulario = (e) => {
         case "txt_producto":
             validarCampo(expresiones.nombre, e.target, 'txt_producto');
             break;
-              case "txt_descripcion":
+        case "txt_descripcion":
             validarCampo(expresiones.nombre, e.target, 'txt_descripcion');
             break;
     }
@@ -55,14 +54,14 @@ const validarCampo = (expresion, input, campo) => {
         document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
         document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
         campos[campo] = true;
-         
+
     } else {
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
         document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
         document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
         document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
-        campos[campo] = false;      
+        campos[campo] = false;
     }
 };
 inputs.forEach((input) => {
@@ -143,7 +142,7 @@ btn_agregar.addEventListener('click', obtener_datos);
 btn_modificar.addEventListener('click', obtener_datos2);
 
 function confirmar2(evt) {
-     
+
     Swal.fire({
         title: 'Eliminar',
         text: "Desea eliminar el registro?",
@@ -169,7 +168,7 @@ function confirmar2(evt) {
                 icon: 'error',
                 title: 'Cancelado',
                 text: 'Datos No Eliminados'
-               
+
             });
         }
     });

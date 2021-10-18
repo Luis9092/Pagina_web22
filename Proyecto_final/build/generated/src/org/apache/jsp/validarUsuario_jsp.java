@@ -67,7 +67,7 @@ public final class validarUsuario_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                <div class=\"texto\">\n");
       out.write("                <i class=\"fas fa-user-edit\"></i>\n");
       out.write("                ");
-      out.write("<input type=\"number\" class=\"txt\" id=\"txtCurp\" required=\"\" onkeyup=\"generarUsuario()\" name=\"txtCurp\" placeholder=\"Codigo\" pattern=\"[J]{1}[0-9]{3}\">\n");
+      out.write("<input type=\"number\" class=\"txt\" id=\"txtCurp\" onkeypress=\"return event.charCode >= 48\" min=\"1\" required=\"\" onkeyup=\"generarUsuario()\" name=\"txtCurp\" placeholder=\"Codigo\" pattern=\"[J]{1}[0-9]{3}\">\n");
       out.write("                </div>\n");
       out.write("                <br>\n");
       out.write("                <br>\n");
@@ -102,10 +102,12 @@ public final class validarUsuario_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                <br>\n");
       out.write("                <label>Usuario Generado: </label><input type=\"text\" class=\"txt\" id=\"txtUsuarioGeneradoAutomaticamente\" required=\"\" readonly=\"\" name=\"txtUsuarioGeneradoAutomaticamente\" placeholder=\"Usuario Generado\">\n");
       out.write("                <br>\n");
-      out.write("                <br>\n");
+      out.write("                <br> <br>\n");
+      out.write("                <div class=\"Boton_44\">\n");
       out.write("                <input type=\"submit\" value=\"Enviar Datos\" class=\"btn\" id=\"btnEnviarDatos\" disabled=\"\">\n");
       out.write("                <input type=\"button\" value=\"Borrar datos\" class=\"btn\" id=\"btnBorrardatos\" onclick=\"borrarDatosValidarUsuario()\">\n");
-      out.write("            </form>\n");
+      out.write("            </div>\n");
+      out.write("                </form>\n");
       out.write("            <script src=\"js/funcionesValidarUsuario.js\"></script>\n");
       out.write("        </div>\n");
       out.write("    </body>\n");

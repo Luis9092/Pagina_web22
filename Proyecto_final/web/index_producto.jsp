@@ -21,25 +21,66 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="css/estilo_producto.css">
+        <link href="css/estilo_menu.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <form  action="index.html">
-            <input class="btn_form" type="submit" value="Menu" />
-            <button type="button" class="btn_form" data-toggle="modal" data-target="#modal_producto" onclick="Limpiar()">
-                Formulario
-            </button>
-        </form>
+        <div id="header">
+            <ul class="nav">
+                <img src="imagenes/onitech.png" alt=""/>
+                <li><a href="index_inicio_principal.jsp">Inicio</a></li>
+                <li><a href="index_producto.jsp">Productos</a>
+                    <ul>
+                        <li><a href="index_marcas.jsp">Marcas</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Ventas</a>
+                    <ul>
+                        <li><a href="index_cliente.jsp">Clientes</a></li>
+                        <li><a href="index_empleado.jsp">Empleados</a>
+                            <ul>
+                                <li><a href="index_puesto.jsp">Puestos</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="">Compras</a>
+                    <ul>
+                        <li><a href="index_prooveedores.jsp">Proveedores</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Reportes</a></li>
+                    <li >
+                    <%
+       response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+       if(session.getAttribute("txtUsuario")==null&&session.getAttribute("nombre")==null){
+           response.sendRedirect("index.html");
+       }
+                    %>
+                    <a > 
+                        <form action="sr_cerrar_sesion" >
+                            <input class="cerrar_sesion" type="submit"  value="Cerrar Sesion">
+                        </form>
+                    </a>
 
-        <div class="container-fluid p-3 my-3 bg-light  text-black">
+                </li>
+            </ul>
+        </div>
+        <br>
+        <button type="button" class="btn_form" data-toggle="modal" data-target="#modal_producto" onclick="Limpiar()">
+            Formulario
+        </button>
+
+
+        <div class="container-fluid p-3 my-3   text-black">
             <div class="formulario_titulo">
                 <h5>Formulario Productos</h5>
             </div>
             <br>
             <div class="modal fade"  data-backdrop="static" data-keyboard="false" tabindex="-1" id="modal_producto" role="dialog">
                 <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-body  formula_modal">
-                           <form  action="index_marcas.jsp">
+                    <div class="modal-content formula_modal">
+                        <div class="modal-body  ">
+                            <form  action="index_marcas.jsp">
                                 <input class="enlaze_marcas" type="submit" value="Marcas" />
                             </form>
 
@@ -56,10 +97,10 @@
                                 <div class="formulario__grupo" id="grupo__txt_producto">
                                     <label for="lbl_producto" class="formulario__label">Producto </label>
                                     <div class="formulario__grupo-input">
-                                        <input type="text" class="formulario__input" name="txt_producto" id="txt_producto" placeholder="Producto" required >
+                                        <input type="text" class="formulario__input" name="txt_producto" id="txt_producto" pattern="[a-zA-Z0-9_-]{6,16}$" placeholder="Producto" required >
                                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                     </div>
-                                    <p class="formulario__input-error">Solo esta permitido letras </p>
+                                   <p class="formulario__input-error">Solo esta permitido letras,numeros,comas y puntos.</p>
                                 </div>
 
                                 <!-- Existencia -->
@@ -67,7 +108,7 @@
                                 <div class="formulario__grupo" id="grupo__txt_existencia">
                                     <label for="lbl_descripcion" class="formulario__label">Existencia </label>
                                     <div class="formulario__grupo-input">
-                                        <input type="number" class="formulario__input" name="txt_existencia" id="txt_existencia">
+                                        <input type="number" class="formulario__input" name="txt_existencia" id="txt_existencia" required>
                                     </div>
                                 </div>
 
@@ -76,10 +117,10 @@
                                 <div class="formulario__grupo" id="grupo__txt_descripcion">
                                     <label for="lbl_descripcion" class="formulario__label">Descripcion </label>
                                     <div class="formulario__grupo-input">
-                                        <input type="text" class="formulario__input" name="txt_descripcion" id="txt_descripcion"  placeholder="Descripcion del producto">
+                                        <input type="text" class="formulario__input" name="txt_descripcion" id="txt_descripcion" pattern="[a-zA-Z0-9_-]{6,16}$" placeholder="Descripcion del producto" required>
                                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                     </div>
-                                    <p class="formulario__input-error">Solo esta permitido letras </p>
+                                    <p class="formulario__input-error">Solo esta permitido letras,numeros,comas y puntos.</p>
                                 </div>
 
                                 <!-- Precio Costo -->
@@ -88,34 +129,33 @@
                                     <label for="lbl_descripcion" class="formulario__label">Precio Costo </label>
                                     <div class="formulario__grupo-input">
                                         <span class="input-group-text" style="position: absolute; margin-left: 0px; margin-top: 0px;">Q</span>
-                                        <input type="number" style="padding-left: 40px;" class="formulario__input" step="0.01" name="txt_costo" id="txt_costo" class="form-control" placeholder="Q##. ##">
+                                        <input type="number" style="padding-left: 40px;" class="formulario__input" step="0.01" name="txt_costo" id="txt_costo" required class="form-control" placeholder="Q##. ##">
                                     </div>
                                 </div>
                                 <!-- Precio Venta-->
-
                                 <div class="formulario__grupo" id="grupo__txt_pven">
                                     <label for="lbl_descripcion" class="formulario__label">Precio Venta </label>
                                     <div class="formulario__grupo-input">
                                         <span class="input-group-text" style="position: absolute; margin-left: 0px; margin-top: 0px;">Q</span>
-                                        <input type="number" style="padding-left: 40px;"  class="formulario__input" step="0.01" name="txt_venta" id="txt_venta" placeholder="Q##. ##">
-
+                                        <input type="number" style="padding-left: 40px;"  class="formulario__input" step="0.01" name="txt_venta" id="txt_venta" required placeholder="Q##. ##">
                                     </div>
                                 </div>
                                 <!-- Imagen -->
-
                                 <div class="formulario__grupo" id="grupo__txt_imagen">
                                     <label for="lbl_imagen" class="formulario__label">Imagen </label>
                                     <div class="formulario__grupo-input">
-                                        <input type="text" class="formulario__input" name="txt_imagen" id="txt_imagen" placeholder="Link de la imagen del producto">
+                                       
+                                            <input  type="file"   name="txt_imagen" id="txt_imagen"   placeholder="Link de la imagen del producto" required >
+                                     
                                     </div>
                                 </div>
 
                                 <!-- Marcas -->
 
                                 <div class="formulario__grupo" id="grupo__txt_marcas">
-                                    <label for="lbl_marcas" class="formulario__label">Marcas:</label>
+                                    <label for="lbl_marcas" class="formulario__label">Marcas</label>
                                     <div class="formulario__grupo-input">
-                                        <select name="drop_marcas" id="drop_marcas" class="formulario__input">
+                                        <select name="drop_marcas" id="drop_marcas" class="formulario__input" required>
                                             <%
                                                 Marca marca= new Marca();
                                                 HashMap<String,String> desplegar= marca.mostrar_marcas();
@@ -177,7 +217,7 @@
                         out.println("<tr data-id="+tabla.getValueAt(t, 0)+" data-id_producto="+tabla.getValueAt(t, 9)+">");
                         out.println("<td>"+ tabla.getValueAt(t, 1)+"</td>");
                         out.println("<td>"+ tabla.getValueAt(t, 2)+"</td>");
-                        out.println("<td>"+ tabla.getValueAt(t, 3)+"</td>");
+                        out.println("<td> <img src="+ tabla.getValueAt(t, 3)+" alt='imagen' width='100' height='100'></td>");
                         out.println("<td>"+ tabla.getValueAt(t, 4)+"</td>");
                         out.println("<td>"+ tabla.getValueAt(t, 5)+"</td>");
                         out.println("<td>"+ tabla.getValueAt(t, 6)+"</td>");

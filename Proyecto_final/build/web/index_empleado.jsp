@@ -23,26 +23,65 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
 
         <link rel="stylesheet" href="css/estilo_empleado.css">
+         <link href="css/estilo_menu.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-          <form  action="index.html">
-            <input class="btn_form" type="submit" value="Menu" />
-       
+        <div id="header">
+            <ul class="nav">
+                <img src="imagenes/onitech.png" alt=""/>
+                 <li><a href="index_inicio_principal.jsp">Inicio</a></li>
+                <li><a href="index_producto.jsp">Productos</a>
+                    <ul>
+                        <li><a href="index_marcas.jsp">Marcas</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Ventas</a>
+                    <ul>
+                        <li><a href="index_cliente.jsp">Clientes</a></li>
+                        <li><a href="index_empleado.jsp">Empleados</a>
+                            <ul>
+                                <li><a href="index_puesto.jsp">Puestos</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="">Compras</a>
+                    <ul>
+                        <li><a href="index_prooveedores.jsp">Proveedores</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Reportes</a></li>
+                  <li>
+                    <%
+       response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+       if(session.getAttribute("txtUsuario")==null&&session.getAttribute("nombre")==null){
+           response.sendRedirect("index.html");
+       }  %>
+                    <a > 
+                        <form action="sr_cerrar_sesion" >
+                            <input class="cerrar_sesion" type="submit"  value="Cerrar Sesion">
+                        </form>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <br>
+
         <button type="button" class="btn_form" data-toggle="modal" data-target="#modal_empleado" onclick="Limpiar()">
             Formulario
         </button>
-          </form>
-        <div class="container-fluid p-3 my-3 bg-light  text-black">
+
+        <div class="container-fluid p-3 my-3  text-black">
 
             <div class="formulario_titulo">
-                <h5>Formulario Empleados :3</h5>
+                <h5>Formulario Empleados </h5>
             </div>
             <br>
             <div class="modal fade"  data-backdrop="static" data-keyboard="false" tabindex="-1" id="modal_empleado" role="dialog">
                 <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-body  formula_modal">
-                            
+                    <div class="modal-content formula_modal">
+                        <div class="modal-body  ">
+
                             <form  action="index_puesto.jsp">
                                 <input class="enlaze_puesto" type="submit" value="Puestos" />
                             </form>
@@ -148,7 +187,7 @@
                                 <div class=" formulario__grupo-btn-enviar">
                                     <button  name="btn_agregar" id="btn_agregar" value="agregar"    class="formulario__btn " >Agregar</button>
                                     <button  name="btn_modificar" id="btn_modificar" value="modificar" class="formulario__btn1" >Modificar</button>
-                                   <button  name="btn_2" id="btn_2" onclick="return confirmar2();" value="eliminar"class="formulario__btn2" > Eliminar </button>
+                                    <button  name="btn_2" id="btn_2" onclick="return confirmar2();" value="eliminar"class="formulario__btn2" > Eliminar </button>
                                 </div>
                                 <button name="btn_eliminar" id="btn_eliminar"  value="eliminar"class="btn_falso" > </button>
                                 <br>
